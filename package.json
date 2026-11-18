@@ -1,0 +1,94 @@
+{
+  "name": "@nextanalytica/tag",
+  "version": "1.0.0",
+  "description": "The nextanalytica tag for JavaScript apps: one component per framework, the same t.js underneath.",
+  "license": "MIT",
+  "type": "module",
+  "sideEffects": false,
+  "homepage": "https://nextanalytica.app",
+  "keywords": [
+    "analytics",
+    "astro",
+    "cookieless",
+    "gatsby",
+    "mcp",
+    "model-context-protocol",
+    "next",
+    "nextanalytica",
+    "nuxt",
+    "privacy",
+    "react",
+    "sveltekit",
+    "vue",
+    "web-analytics"
+  ],
+  "files": [
+    "dist",
+    "src/astro",
+    "gatsby",
+    "README.md",
+    "LICENSE"
+  ],
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./react": {
+      "types": "./dist/react.d.ts",
+      "import": "./dist/react.js"
+    },
+    "./next": {
+      "types": "./dist/next.d.ts",
+      "import": "./dist/next.js"
+    },
+    "./vue": {
+      "types": "./dist/vue.d.ts",
+      "import": "./dist/vue.js"
+    },
+    "./nuxt": {
+      "types": "./dist/nuxt.d.ts",
+      "import": "./dist/nuxt.js"
+    },
+    "./sveltekit": {
+      "types": "./dist/sveltekit.d.ts",
+      "import": "./dist/sveltekit.js"
+    },
+    "./astro": "./src/astro/Analytics.astro",
+    "./gatsby/package.json": "./gatsby/package.json",
+    "./gatsby/*": "./gatsby/*",
+    "./package.json": "./package.json"
+  },
+  "peerDependencies": {
+    "react": ">=18"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": true
+    }
+  },
+  "scripts": {
+    "build": "rm -rf dist && tsc -p tsconfig.build.json",
+    "typecheck": "tsc -p tsconfig.json",
+    "test": "vitest run --passWithNoTests",
+    "prepublishOnly": "npm run build && vitest run"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.5",
+    "@types/react": "^19.2.7",
+    "@types/react-dom": "^19.2.3",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "typescript": "^7.0.2",
+    "vitest": "^5.0.5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nonamesenior/nextanalytica-tag.git"
+  },
+  "bugs": {
+    "url": "https://github.com/nonamesenior/nextanalytica-tag/issues"
+  }
+}

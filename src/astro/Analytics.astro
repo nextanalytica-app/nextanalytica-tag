@@ -1,0 +1,11 @@
+---
+/**
+ * `<Analytics project="…" />` for Astro: in the base layout's <head>. It renders the script line itself, so it works
+ * on static pages with no client JavaScript, and with View Transitions (the tag counts history changes).
+ */
+import { scriptTag, type Options } from "../../dist/index.js";
+interface Props extends Options { project: string }
+const { project, ...o } = Astro.props;
+const tag = scriptTag(project, o);
+---
+<script is:inline async src={tag.src} {...tag.attributes}></script>

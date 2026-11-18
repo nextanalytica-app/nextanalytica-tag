@@ -1,0 +1,27 @@
+name: ci
+on:
+  push: { branches: [main] }
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      publish: { description: "Publish this version to npm", type: boolean, default: false }
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, registry-url: "https://registry.npmjs.org" }
+      - run: npm ci
+      - run: npx tsc -p tsconfig.json
+      - run: npm run build
+      - run: npx vitest run
+      - if: ${{ github.event_name == 'workflow_dispatch' && inputs.publish }}
+        run: npm publish --access public --provenance
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
